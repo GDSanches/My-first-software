@@ -9,7 +9,6 @@ public class Funcionario {
 	private int salario;
 	
 	public Funcionario(String cpf, int senha, String endereço, String telefone, char cargo, int salario) {
-		super();
 		
 		this.setCpf(cpf);
 		this.setSenha(senha);
