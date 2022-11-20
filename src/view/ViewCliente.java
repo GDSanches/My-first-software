@@ -38,26 +38,7 @@ public class ViewCliente extends JFrame {
 	private JTable jtCliente;
 	private JTextField textField;
 
-	/**
-	 * Launch the application.
-	 */
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ViewCliente frame = new ViewCliente();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-*/
-	/**
-	 * Create the frame.
-	 */
+
 	public ViewCliente() {
 		setResizable(false);
 		

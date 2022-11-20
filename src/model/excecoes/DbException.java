@@ -1,4 +1,4 @@
-package Excecao;
+package model.excecoes;
 
 public class DbException extends RuntimeException{
 

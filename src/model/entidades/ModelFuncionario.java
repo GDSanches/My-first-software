@@ -1,6 +1,6 @@
-package funcionarios;
+package model.entidades;
 
-public class Funcionario {
+public class ModelFuncionario {
 	private String cpf;
 	private int senha;
 	private String endereço;
@@ -8,7 +8,7 @@ public class Funcionario {
 	private char cargo;
 	private int salario;
 	
-	public Funcionario(String cpf, int senha, String endereço, String telefone, char cargo, int salario) {
+	public ModelFuncionario(String cpf, int senha, String endereço, String telefone, char cargo, int salario) {
 		
 		this.setCpf(cpf);
 		this.setSenha(senha);
@@ -18,7 +18,7 @@ public class Funcionario {
 		this.setSalario(salario);
 		
 	}
-	public Funcionario() {}
+	public ModelFuncionario() {}
 	public String getCpf() {
 		return cpf;
 	}

@@ -3,13 +3,8 @@ package app;
 
 import java.sql.Connection;
 
-import bancoDeDados.Conexao;
-//import bancoDeDados.Conexao;
-//import java.sql.Statement;
-//import java.sql.Connection;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-import bancoDeDados.FuncoesBanco;
+import model.conexao.Conexao;
+import model.consultas.FuncoesBanco;
 import view.ViewCliente;
 import view.ViewLogin;
 
@@ -56,21 +51,5 @@ public class App {
 }
 
 
-		 /*
-		try
-		{
-			conectar = new Conexao();
-			
-			System.out.println("Usuario da Conexao: " + conectar.getConexao().getMetaData().getUserName());
-			System.out.println("URL da Conexao: " + conectar.getConexao().getMetaData().getURL());
-			Statement st = conectar;
-			
-		}catch(Exception ex){
-			ex.printStackTrace();
-		}
-		finally{
-			if(conectar != null)
-				conectar.fecharConexao();
-		}
-		*/
+	
 	
