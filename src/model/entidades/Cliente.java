@@ -1,4 +1,4 @@
-package cliente;
+package model.entidades;
 
 public class Cliente {
 	private long codcliente;

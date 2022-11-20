@@ -1,14 +1,14 @@
-package venda;
+package model.entidades;
 
 import java.sql.Date;
 
-public class Venda {
+public class ModelVenda {
 	private  long cliente;
 	private int codVenda;
 	private String produto;
 	private String formaPagamento;
 	private Date data;
-	public Venda(long cliente, int codVenda, String produto, String formaPagamento, Date data) {
+	public ModelVenda(long cliente, int codVenda, String produto, String formaPagamento, Date data) {
 		super();
 		
 		this.setCliente(cliente);

@@ -1,4 +1,4 @@
-package bancoDeDados;
+package model.consultas;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
