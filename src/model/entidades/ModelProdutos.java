@@ -20,6 +20,9 @@ public class ModelProdutos {
 		this.proEspecificacoes = proEspecificacoes;
 		this.qtdEstoque = qtdEstoque;
 	}
+	public ModelProdutos() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getCodProduto() {
 		return this.codProduto;
 	}
