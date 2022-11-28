@@ -19,6 +19,7 @@ public class Conexao {
 			Properties props = loadProperties();
 			String url = props.getProperty("dburl");
 			conecta= DriverManager.getConnection(url, props);
+			
 			}
 			catch(SQLException e) {
 				

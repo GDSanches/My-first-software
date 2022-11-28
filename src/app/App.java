@@ -4,9 +4,11 @@ package app;
 import java.sql.Connection;
 
 import model.conexao.Conexao;
-import model.consultas.FuncoesBanco;
+import model.entidades.ModelProdutos;
+import model.queries.QueryProduto;
 import view.ViewCliente;
 import view.ViewLogin;
+import view.ViewProduto;
 
 public class App {
 
@@ -15,36 +17,26 @@ public class App {
 	public static void main(String[] args) {
 		
 		Connection con=Conexao.getConnection();
-		
+		ModelProdutos produto = new ModelProdutos();
 		//FuncoesBanco.insereCliente(con);
-		//FuncoesBanco.insereVendedor(con);
-		//FuncoesBanco.insereProduto(con);
+	    //FuncoesBanco.insereVendedor(con);
+		//FuncoesBanco.insereProduto(con,produto);
 		//FuncoesBanco.insereVenda(con);
+		//FuncoesBanco.consultaProduto(con);
 		
-		FuncoesBanco.consultaCliente(con);
-		FuncoesBanco.consultaVendedor(con);
-		FuncoesBanco.consultaProduto(con);
-		FuncoesBanco.consultaVenda(con);
-		FuncoesBanco.consultaItensvendidos(con);
 		
-		Conexao.closeConnection();
-		 
 		try {
 			
-			ViewLogin frame = new ViewLogin();
-			frame.setVisible(true);
+			//ViewLogin frame = new ViewLogin();
+			ViewProduto produtos = new ViewProduto();
+		    produtos.setVisible(true);
+			//frame.setVisible(true);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
 			
 		}
 		
-		try {
-			ViewCliente frame = new ViewCliente();
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	
 	}
 	
