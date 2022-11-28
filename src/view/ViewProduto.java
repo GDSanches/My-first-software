@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -36,6 +37,7 @@ public class ViewProduto extends JFrame  {
 	ArrayList<ModelProdutos> listaModelProduto = new ArrayList();
 	ControllerProdutos controllerProdutos = new ControllerProdutos();
 	ModelProdutos modelProdutos = new ModelProdutos();
+	private String salvarAlterar;
 	/**
 	 * coloca os produtos na tabela de produtos
 	 */
@@ -61,7 +63,7 @@ public class ViewProduto extends JFrame  {
 	/**
 	 * salva os produtos no banco
 	 */
-	public void salvarButtonActionPerformed(ActionEvent e) {
+	private void salvarButtonActionPerformed(ActionEvent e) {
 		modelProdutos.setProNome(this.textPnome.getText());
 		modelProdutos.setQtdEstoque(Integer.parseInt(this.textEstoque.getText()));
 		modelProdutos.setPrecoPrazo(Double.parseDouble(this.textPprazo.getText()));
@@ -69,11 +71,13 @@ public class ViewProduto extends JFrame  {
 		modelProdutos.setProEspecificacoes(this.textEspecificacoes.getText());
 		controllerProdutos.salvarProdutoController(modelProdutos);
 		this.carregarProdutosTabela();
+		this.limparCampos();
+		this.habilitaCampos(false);
 	}
 	/**
 	 * deleta produto no banco
 	 */
-	public void deleteButtonActionPerformed(ActionEvent e) {
+	private void deleteButtonActionPerformed(ActionEvent e) {
 		int linha = tableProdutos.getSelectedRow();
 		int codigoProduto =(int) tableProdutos.getValueAt(linha, 0);
 		controllerProdutos.excluirProdutoController(codigoProduto);
@@ -88,6 +92,56 @@ public class ViewProduto extends JFrame  {
 		textPnome.setEditable(c);
 		textPprazo.setEditable(c);
 		textPvista.setEditable(c);
+	}
+	/**
+	 * habilita o cadastramento de um novo produto
+	 */
+	private void novoButtonActionPerformed(ActionEvent e) {
+		habilitaCampos(true);
+	}
+	/**
+	 * cancela a criação de um novo produto
+	 */
+	private void cancelButtonActionPerformed(ActionEvent e) {
+		habilitaCampos(false);
+		limparCampos();
+	}
+	
+	/**
+	 * limpar os campos do formulario
+	 * @param c
+	 */
+	private void limparCampos() {
+		textEspecificacoes.setText("");
+		textEstoque.setText("");
+		textPnome.setText("");
+		textPprazo.setText("");
+		textPvista.setText("");
+		textCodCliente.setText("");
+	}
+	/**
+	 * alterar uma informação de algum produto
+	 */
+	private void alterarButtonActionPerformed(ActionEvent e) {
+		habilitaCampos(true);
+		int linha = this.tableProdutos.getSelectedRow();
+		try {
+			int codProduto =(int) this.tableProdutos.getValueAt(linha, 0);
+		
+			//recupera os dados do banco 
+			modelProdutos = controllerProdutos.retornaProdutoController(codProduto);
+			//setar na interface
+			this.textCodCliente.setText(String.valueOf(modelProdutos.getCodProduto()));
+			this.textEspecificacoes.setText(modelProdutos.getProEspecificacoes());
+			this.textEstoque.setText(String.valueOf(modelProdutos.getQtdEstoque()));
+			this.textPnome.setText(modelProdutos.getProNome());
+			this.textPprazo.setText(String.valueOf(modelProdutos.getPrecoPrazo()));
+			this.textPvista.setText(String.valueOf(modelProdutos.getPrecoVista()));
+		}catch(Exception exc) {
+			JOptionPane.showMessageDialog(null,"Nenhum registro selecionado ou código inválido.","ERRO", JOptionPane.WARNING_MESSAGE);
+			exc.printStackTrace();
+		}
+		
 	}
  
 	/**
@@ -213,6 +267,11 @@ public class ViewProduto extends JFrame  {
 		panel.add(searchButton);
 		
 		JButton cancelButton = new JButton("Cancelar");
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cancelButtonActionPerformed(e);
+			}
+		});
 		cancelButton.setIcon(new ImageIcon(ViewProduto.class.getResource("/app/imagens/cancelar.png")));
 		cancelButton.setBounds(36, 187, 118, 23);
 		panel.add(cancelButton);
@@ -220,6 +279,7 @@ public class ViewProduto extends JFrame  {
 		JButton newButton = new JButton("Novo");
 		newButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				novoButtonActionPerformed(e);
 			}
 		});
 		newButton.setIcon(new ImageIcon(ViewProduto.class.getResource("/app/imagens/novo.png")));
@@ -227,6 +287,11 @@ public class ViewProduto extends JFrame  {
 		panel.add(newButton);
 		
 		JButton alterButton = new JButton("Alterar");
+		alterButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				alterarButtonActionPerformed(e);
+			}
+		});
 		alterButton.setIcon(new ImageIcon(ViewProduto.class.getResource("/app/imagens/alterar.png")));
 		alterButton.setBounds(280, 187, 96, 23);
 		panel.add(alterButton);
@@ -253,6 +318,7 @@ public class ViewProduto extends JFrame  {
 		
 		panel.add(salvarButton);
 		
+		habilitaCampos(false);
 		carregarProdutosTabela();
 	}
 

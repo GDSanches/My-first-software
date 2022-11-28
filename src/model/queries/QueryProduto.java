@@ -66,14 +66,7 @@ public class QueryProduto {
 			ResultSet rs = null;
 			try {
 				st = conecta.createStatement();
-				rs = st.executeQuery("SELECT"
-						+ "pronome,"
-						+ "quantidade_em_estoque"
-						+ "preco_a_vista"
-						+ "preco_a_prazo"
-						+ "especificacoes"
-						+ "codigo"
-						+ "FROM produto WHERE codigo ='"+ pId +"';"); 
+				rs = st.executeQuery("SELECT pronome, quantidade_em_estoque,preco_a_vista,preco_a_prazo,especificacoes,codigo FROM produto WHERE codigo ='"+ pId +"';"); 
 				while(rs.next()) {
 					modelProdutos.setProNome(rs.getString(1));
 					modelProdutos.setQtdEstoque(rs.getInt(2));
